@@ -98,17 +98,6 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    //Check if account exist, and providers
-    func checkSignInMethods(emailAddress: String) async -> [String] {
-        var signInMethods = [String]()
-        do {
-        signInMethods = try await Auth.auth().fetchSignInMethods(forEmail: emailAddress)
-        } catch {
-            print(error.localizedDescription)
-        }
-        return signInMethods
-    }
-    
     func updateDisplayName() async {
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = displayName
