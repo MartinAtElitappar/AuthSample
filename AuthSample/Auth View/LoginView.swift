@@ -12,8 +12,6 @@ struct LoginView: View {
     @EnvironmentObject var authVM: AuthViewModel
     @Environment(\.colorScheme) var colorScheme
     @State private var showPrivacyPolicy = false
-    @State private var showCoverView = false
-    @State private var showLeaveMessageView = false
     @State private var continueAnotherWay = false
     
     @StateObject private var appleService = FirebaseSignInWithAppleService()
@@ -53,21 +51,6 @@ struct LoginView: View {
                         .foregroundColor(colorScheme == .dark ? .black : .white)
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
-                        .padding(.horizontal)
-                        
-                        // Continue with email - button
-                        Button {
-                            authVM.authState = .email
-                        } label: {
-                            HStack {
-                                Image(systemName: "envelope")
-                                Text("Continue with email")
-                            } .frame(maxWidth: 500)
-                        }
-                        .tint(colorScheme == .dark ? .white : .black)
-                        .foregroundColor(colorScheme == .dark ? .black : .white)
-                        .buttonStyle(.bordered)
-//                        .controlSize(.large)
                         .padding(.horizontal)
                         
                         // Continue without login - button
@@ -111,20 +94,14 @@ struct LoginView: View {
             .sheet(isPresented: $showPrivacyPolicy) {
                 PrivacyPolicy()
             }
-            .fullScreenCover(isPresented: $showCoverView) {
+            .fullScreenCover(isPresented: $authVM.showCoverView) {
                 CoverView()
             }
-            .fullScreenCover(isPresented: $showLeaveMessageView) {
+            .fullScreenCover(isPresented: $authVM.showLeaveMessageView) {
                 LeaveMessageView()
             }
         }
         .navigationViewStyle(.stack)
-        .onAppear {
-            //Workaround: The view don´t update(is not showing CoverView) without this solution
-            //Another solution may be to implement @MainActor in the ViewModel
-//            showCoverView = authVM.showCoverView
-//            showLeaveMessageView = authVM.showLeaveMessageView
-        }
     }
     
     // Sign in with Apple - button action

@@ -22,7 +22,7 @@ struct HomeView: View {
                     
                 }
             }
-            .navigationTitle("Elit draw the word")
+            .navigationTitle("Auth Sample")
             .toolbar {
                 ToolbarItem(placement: .automatic) {
                     Button {

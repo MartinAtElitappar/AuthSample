@@ -11,6 +11,5 @@ enum authState {
     case undefined
     case signedIn
     case signedOut
-    case email
     case reAuthenticate
 }

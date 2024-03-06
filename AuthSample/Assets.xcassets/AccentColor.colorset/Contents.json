@@ -2,13 +2,8 @@
   "colors" : [
     {
       "color" : {
-        "color-space" : "extended-srgb",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.987",
-          "green" : "0.051",
-          "red" : "0.017"
-        }
+        "platform" : "universal",
+        "reference" : "systemBlueColor"
       },
       "idiom" : "universal"
     }

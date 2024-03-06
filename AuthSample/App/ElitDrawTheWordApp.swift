@@ -28,8 +28,6 @@ struct AuthSampleApp: App {
                         }
                 case .signedOut:
                     LoginView()
-                case .email:
-                    SignInWithEmailView()
                 case .reAuthenticate:
                     ReAuthenticateView()
                 }
