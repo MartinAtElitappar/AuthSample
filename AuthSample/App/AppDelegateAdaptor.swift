@@ -21,28 +21,4 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 }
 
-//Check valid email: https://www.codebales.com/validating-email-in-swift-or-swiftUI
-extension String {
-    var isValidEmail: Bool {
-        let name = "[A-Z0-9a-z]([A-Z0-9a-z._%+-]{0,30}[A-Z0-9a-z])?"
-        let domain = "([A-Z0-9a-z]([A-Z0-9a-z-]{0,30}[A-Z0-9a-z])?\\.){1,5}"
-        let emailRegEx = name + "@" + domain + "[A-Za-z]{2,8}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
-        return emailPredicate.evaluate(with: self)
-    }
-}
-
-// Find first name in email address
-extension String {
-    func emailFirstName() -> String {
-        let capEmail = prefix(1).capitalized + dropFirst()
-        let fullname = capEmail.components(separatedBy: "@").first
-        let firstName = fullname?.components(separatedBy: ".").first ?? ""
-        return firstName
-    }
-    mutating func emailFistName() {
-        self = self.emailFirstName()
-    }
-}
-
 
